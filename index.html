@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Tokini</title>
+  <style>
+    body {
+    margin: 0;
+    min-height: 100vh; /* allow page to grow */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* align to top */
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    }
+
+  .card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
+    text-align: center;
+    animation: pop 1s ease;
+  }
+  h1 {
+    font-size: 2.5rem;
+    color: #ff4081;
+  }
+  p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: #555;
+  }
+  @keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #ff4081;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover {
+  background: #e73370;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    animation: fall 3s linear infinite;
+  }
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+  }
+
+  .likes-box {
+  margin-top: 20px;
+  background: #ffe6f0; /* light pastel pink */
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+  text-align: left;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeIn 0.8s ease;
+}
+
+.likes-box h2 {
+  text-align: center;
+  color: #ff4081;
+  margin-bottom: 15px;
+}
+
+.likes-box ul {
+  padding-left: 20px;
+}
+
+.likes-box li {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.4;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.poop {
+  font-size: 1.5rem;  /* adjust size */
+  margin-left: 5px;   /* small space after the text */
+  display: inline;    /* ensures it stays inline with text */
+  cursor: pointer;
+}
+
+.cake:hover,
+.poop:hover{
+    cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+  <div class="card">
+    <h1>🎉 Happy Early Birthday Tokini! <span class="cake" onclick="cakeClicked()">🎂</span></h1>
+    <p>Wishing you endless laughter, unshakable joy, and moments as beautiful as you. 💖</p>
+    <p> Here's a poop emoji..
+        <span class="poop" onclick="poopClicked()">💩</span>
+    </p>
+
+    <button onclick="showList()">See what I love about you ❤️</button>
+
+   <div id="likesBox" class="likes-box" style="display: none;">
+    <h2>💌 Things I love about you 💌</h2>
+        <ul>
+            <li>You have a good heart❤️.</li>
+            <li>You’re relatively caring and thoughtful 💕</li>
+            <li>You're a really really loyal person</li>
+            <li>You have a really bright personality</li>
+            <li>Your smile..🤭😂</li>
+            <li>Your laugh is contagious 😂</li>
+            <li>You're super pretty🤍</li>
+            <li>Your sense of humor</li>
+            <li>You DO NOT like what you DO NOT like</li>
+            <li>You're honest (maybe too frank👀)</li>
+            <li>You're really smart and "creative"</li>
+            <li>YOU LIKE ME!!😝</li>
+        </ul>
+    </div>
+
+
+  </div>
+</body>
+<script>
+  // Create 50 confetti pieces
+  for(let i=0; i<50; i++) {
+    let confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    confetti.style.left = Math.random()*100 + "vw";
+    confetti.style.background = `hsl(${Math.random()*360}, 100%, 50%)`;
+    confetti.style.animationDuration = (Math.random()*3+2) + "s";
+    document.body.appendChild(confetti);
+  }
+
+  function showList() {
+  const box = document.getElementById("likesBox");
+  if (box.style.display === "none") {
+    box.style.display = "block";
+
+    // Listen for clicks outside
+    document.addEventListener("click", outsideClick);
+  } else {
+    box.style.display = "none";
+    document.removeEventListener("click", outsideClick);
+  }
+}
+
+function outsideClick(event) {
+  const box = document.getElementById("likesBox");
+  const button = document.querySelector("button");
+
+  if (box.style.display === "block" && !box.contains(event.target) && event.target !== button) {
+    box.style.display = "none";
+    document.removeEventListener("click", outsideClick);
+  }
+}
+
+function poopClicked() {
+      alert("You're so autistic 😂 you tapped a poop emoji..?");
+    }
+
+function cakeClicked() {
+    alert("Sadly,I'm not a cake fan...")
+}
+  </script>
+
+</script>
+</html>
